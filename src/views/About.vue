@@ -1,5 +1,20 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <icon-svg :name="'home'" />
+    <icon-svg :name="'about'" />
+
+    <p>
+        {{ route }}
+    </p>
+
   </div>
 </template>
+<script>
+export default {
+    computed: {
+        route() {
+            return this.$route.path;
+        }
+    }
+}
+</script>

@@ -1,23 +1,163 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import Store from '@/store/index'
+import layout from '@/layout'
 
-Vue.use(Router)
+import Session from '@/utils/session';
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Home
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+Vue.use(Router);
+
+const basicRouter = [
+        {
+            path: '/',
+            name: 'home',
+            meta: {
+                title: '首页'
+            },
+            grade: 1,
+            component: layout,
+            redirect: '/index',
+            children: [
+                {
+                    path: 'index',
+                    name: 'index',
+                    grade: 1,
+                    meta: { title: '首页' },
+                    component: () => import(/* webpackChunkName: "Index" */ '@/views/index')
+                }
+            ]
+            // component: () => import(/* webpackChunkName: "Home" */ '@/views/Home'),
+        },
+        {
+            path: '/login',
+            name: 'login',
+            hide: true,
+            meta: {
+                title: '登录'
+            },
+            component: () => import(/* webpackChunkName: "login" */  './views/login/login.vue')
+        }
+    ],
+    dynamicRouter = [
+        {
+            path: '/about',
+            component: layout,
+            meta: { title: '其他' },
+            grade: 1,
+            children: [
+                {
+                    path: '',
+                    name: 'about',
+                    meta: { title: '其他' },
+                    grade: 1,
+                    component: () => import('@/views/About')
+                }
+            ]
+            
+        },
+        {
+            path: '/admin',
+            name: 'admin',
+            meta: { title: '管理员' },
+            grade: 0,
+            component: () => import('@/views/admin/admin')
+        },
+        {
+            path: '/menu',
+            name: 'menu',
+            grade: 1,
+            meta: { title: '菜单栏' },
+            component: layout,
+            redirect: '/menu/1-1',
+            children: [
+                {
+                    path: '1-1',
+                    name: '1-1',
+                    grade: 1,
+                    meta: { title: '菜单1-1' },
+                    component: () => import('@/views/About'),
+                    children: [
+                        {
+                            path: '1-1-1',
+                            name: '1-1-1',
+                            grade: 0,
+                            meta: { title: '菜单1-1-1' },
+                            component: () => import('@/views/About'),
+                        },
+                        {
+                            path: '1-1-2',
+                            name: '1-1-2',
+                            grade: 0,
+                            meta: { title: '菜单1-1-2' },
+                            component: () => import('@/views/About'),
+                            children: [
+                                {
+                                    path: '1-1-2-1',
+                                    name: '1-1-2-1',
+                                    grade: 0,
+                                    meta: { title: '菜单1-1-2-1' },
+                                    component: () => import('@/views/About'),
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    path: '1-2',
+                    name: '1-2',
+                    grade: 1,
+                    meta: { title: '菜单1-2' },
+                    component: () => import('@/views/About')
+                }
+            ]
+        },
+        {
+            path: '*',
+            name: '404',
+            hide: true,
+            meta: { title: '找不到网页啊~' },
+            grade: 1,
+            component: () => import('@/views/common/404')
+        }
+    ]
+
+
+const createRouter = () => {
+    return new Router({
+        routes: basicRouter
+    });
+}
+
+const router = createRouter();
+
+router.beforeEach( async (to, from, next) => {
+    document.title = to.meta && to.meta.title || 'vue';
+    
+    if (Session.getToken()) {
+        if (to.path === '/login') next('/');
+        else {
+            if (!Store.getters.user) {
+                try {
+                    const user = await Store.dispatch('user/getUserInfo');
+                    const routes = await Store.dispatch('permission/getUserRoutes', user);
+                    router.addRoutes(routes);
+                    
+                    next({...to, replace: true });
+                } catch(err) {
+                    console.log('err: ', err);
+                    next(`/login?to=${to.fullPath}`)
+                }
+            } else next();
+        }
+    } else {
+        if (to.path === '/login') next();
+        else next(`/login?to=${to.fullPath}`)
     }
-  ]
-})
+
+});
+
+export {
+    router,
+    basicRouter,
+    dynamicRouter
+}

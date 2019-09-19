@@ -1,0 +1,15 @@
+$headerHeight: 60px;
+
+$sidebarWidth: 200px;
+$sidebarCollapse: 65px;
+$sidebarBgColor: #1D2939;
+$sidebarTextColor: #adb5bd;
+$sidebarActiveColor: #ffffff;
+
+$borderColor: rgba(0, 0, 0, .15);
+
+:export {
+    sidebarBgColor: $sidebarBgColor;
+    sidebarTextColor: $sidebarTextColor;
+    sidebarActiveColor: $sidebarActiveColor;
+}

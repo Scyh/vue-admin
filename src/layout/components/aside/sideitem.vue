@@ -1,8 +1,7 @@
 <template>
     <div class="side-item" v-if="!route.hide">
-        <el-menu-item v-if="isBase && (!route.children || isRoot())" :index="resolvePath((route.children && route.children[0].path) || route.path)">
-            <i class="el-icon-menu"></i>
-            <span slot="title">{{ route.meta.title }}</span>
+        <el-menu-item v-if="isBase && (!route.children || isRoot())" :index="resolvePath(baseRoute(route, 'path'))">
+            <alink :icon="baseRoute(route, 'meta.icon')" :title="route.meta.title" />
         </el-menu-item>
 
         <el-menu-item v-else-if="!route.children" :index="resolvePath(route.path)">
@@ -11,8 +10,7 @@
         
         <el-submenu v-else :index="route.path">
             <template slot="title" v-if="isBase">
-                <i class="el-icon-menu"></i>
-                <span class="submenu-title" slot="title">{{ route.meta.title }}</span>
+                <alink :icon="route.meta.icon || 'menu'" :title="route.meta.title" :className='["submenu-title"]' />
             </template>
             <span v-else slot="title">{{ route.meta.title }}</span>
             <sideitem v-for="child in route.children" :key="child.path" :route="child" :basePath="resolvePath(route.path)" />
@@ -21,6 +19,7 @@
 </template>
 <script>
 import _path from 'path';
+import alink from './alink';
 
 export default {
     name: 'sideitem',
@@ -35,7 +34,21 @@ export default {
             default: false
         }
     },
+    components: {
+        alink,
+    },
     methods: {
+        baseRoute(route, attr) {
+            const _route = route.children && route.children[0] || route;
+            if (attr.includes('.')) {
+                return attr.split('.').reduce((data, item) => {
+                    return data = data[item]
+                }, _route);
+            } else {
+                return _route[attr];
+            }
+        },
+
         isRoot() {
             return this.route.children && this.route.children.length === 1;
         },

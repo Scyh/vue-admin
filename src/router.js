@@ -22,7 +22,7 @@ const basicRouter = [
                     path: 'index',
                     name: 'index',
                     grade: 1,
-                    meta: { title: '首页' },
+                    meta: { title: '首页', icon: 'home' },
                     component: () => import(/* webpackChunkName: "Index" */ '@/views/index')
                 }
             ]
@@ -48,7 +48,7 @@ const basicRouter = [
                 {
                     path: '',
                     name: 'about',
-                    meta: { title: '其他' },
+                    meta: { title: '其他', icon: 'about' },
                     grade: 1,
                     component: () => import('@/views/About')
                 }
@@ -58,7 +58,7 @@ const basicRouter = [
         {
             path: '/admin',
             name: 'admin',
-            meta: { title: '管理员' },
+            meta: { title: '管理员', icon: 'admin' },
             grade: 0,
             component: () => import('@/views/admin/admin')
         },

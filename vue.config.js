@@ -25,7 +25,10 @@ module.exports = {
     css: {
 		loaderOptions: {
 			sass: {
-				prependData: `@import "@/style/index.scss";`
+                prependData: `
+                @import "@/style/variables.scss";
+                @import '@/style/animation.scss';
+                            `
 			}
 		}
 	},

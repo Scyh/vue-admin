@@ -34,4 +34,7 @@
         margin: 0 4px;
         vertical-align: middle;
     }
+    .horizontal-collapse-transition {
+        @include transition-collapse;
+    }
 }

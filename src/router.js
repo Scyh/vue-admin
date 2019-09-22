@@ -36,7 +36,21 @@ const basicRouter = [
                 title: '登录'
             },
             component: () => import(/* webpackChunkName: "login" */  './views/login/login.vue')
-        }
+        },
+        {
+            path: '/icon',
+            grade: 1,
+            component: layout,
+            children: [
+                {
+                    path: '',
+                    name: 'icon',
+                    grade: 1,
+                    meta: { title: '图标', icon: 'menu' },
+                    component: () => import(/* webpackChunkName: "Index" */ '@/views/icons')
+                }
+            ]
+        },
     ],
     dynamicRouter = [
         {

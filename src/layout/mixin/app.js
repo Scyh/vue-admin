@@ -4,12 +4,14 @@ export default {
     computed: {
         ...mapGetters({
             sidebarOpening: 'app/sidebarOpening',
+            rightSideOpening: 'app/rightSideOpening',
             logo: 'app/logo'
         })
     },
     methods: {
         ...mapMutations({
-            toggleSidebar: 'app/toggleSidebar'
+            toggleSidebar: 'app/toggleSidebar',
+            toggleRightSide: 'app/toggleRightSide'
         })
     }
 }

@@ -1,28 +1,26 @@
 <template>
-    <div class="lo-main">
-       <lo-aside />
+    <div :class='["lo-main", { "show-right-side": rightSideOpening }]'>
        <main :class="{ 'expand': sidebarOpening }">
-           <router-view />
+           <el-container>
+               <el-main>
+                <router-view />
+               </el-main>
+           </el-container>
        </main>
     </div>
 </template>
 <script>
-
-import loAside from '@/layout/components/aside'
 import appMixin from '@/layout/mixin/app'
 
 export default {
-    components: {
-        loAside
-    },
     mixins: [appMixin],
 }
 </script>
 <style scoped lang="scss">
 .lo-main {
+    margin-left: $sidebarWidth;
     > main {
         position: relative;
-        margin-left: $sidebarWidth;
         @include transition-collapse;
     }
     > main.expand {

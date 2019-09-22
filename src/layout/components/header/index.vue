@@ -1,22 +1,26 @@
 <template>
-    <header class="lo-header">
+<!-- rightSideOpening -->
+    <header :class='["lo-header", { "show-right-side": rightSideOpening }]'>
         <div v-show="logo" :class="['lo-header-left', 'logo', { 'collapse': sidebarOpening }]">BRAND</div>
         <div class="lo-header-right">
-            <span class="meau-collapse">
-                <icon-svg @click="toggleSidebar"  :name="sidebarOpening ? 'menuon' : 'menuoff'" />
-            </span>
+            <div class="meau-collapse" @click="toggleSidebar">
+                <icon-svg :name="sidebarOpening ? 'menuon' : 'menuoff'" />
+            </div>
             <div class="lo-header-right-user">
-                <el-badge is-dot class="user-meta user-email">
-                    <icon-svg name="email" />
-                </el-badge>
-                <el-badge is-dot class="user-meta user-email">
-                    <icon-svg name="bell" />
-                </el-badge>
-                <div class="user-meta user-name">
-                    username
+                <div class="user">
+                    <el-badge is-dot class="user-meta user-email">
+                        <icon-svg name="email" />
+                    </el-badge>
+                    <el-badge is-dot class="user-meta user-email">
+                        <icon-svg name="bell" />
+                    </el-badge>
+                    <div class="user-meta user-name">{{user.user_name}}</div>
+                    <div class="user-meta user-profile w-32">
+                        <img class="circle" src="../../../assets/profile.png">
+                    </div>
                 </div>
-                <div class="user-meta user-profile w-32">
-                    <img class="circle" src="../../../assets/profile.png">
+                <div class="setting" @click="toggleRightSide">
+                    <icon-svg name="setting" />
                 </div>
             </div>
         </div>
@@ -24,8 +28,12 @@
 </template>
 <script>
 import appMixin from '@/layout/mixin/app'
+import { mapGetters } from 'vuex'
 export default {
     mixins: [appMixin],
+    computed: {
+        ...mapGetters(['user'])
+    }
 }
 </script>
 <style lang="scss" scoped>
@@ -55,19 +63,34 @@ export default {
         margin-left: $sidebarWidth;
         @include transition-collapse;
         .lo-header-right-user {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        .user {
             line-height: 1;
             display: flex;
             justify-content: flex-end;
+            align-items: center;
             .user-meta {
                 margin: 0 10px;
             }
             .user-profile {
                 border-radius: 50%;
+                line-height: 0;
                 > img {
                     width: 100%;
                     height: 100%;
                 }
             }
+        }
+        .setting {
+            width: $sidebarCollapse;
+            border-left: 1px solid $borderColor;
+            text-align: center;
+            color: $lightBlue;
+            font-size: 25px;
+            cursor: pointer;
         }
     }
 

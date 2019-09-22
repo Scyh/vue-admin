@@ -28,6 +28,7 @@ module.exports = {
                 prependData: `
                 @import "@/style/variables.scss";
                 @import '@/style/animation.scss';
+                @import '@/style/mixin.scss';
                             `
 			}
 		}

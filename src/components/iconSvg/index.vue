@@ -1,29 +1,16 @@
-<template>
-    <svg :class="['icon-svg', ...className]" v-on="$listeners">
-        <use :xlink:href="'#icon-' + name" />
+<template functional>
+    <svg :class="['icon-svg', ...props.className]" v-on="listeners">
+        <use :xlink:href="'#icon-' + props.name" />
     </svg>
-</template>
-<script>
-export default { 
-    name: 'icon-svg',
-    props: {
-        className: {
-            default: () => [],
-            type: Array
-        },
-        name: {
-            required: true,
-            type: String,
-        }
-    },
-}
-</script>
+</template> 
 <style lang="scss">
 .icon-svg {
     width: 1em;
     height: 1em;
+    font-size: inherit;
     vertical-align: -0.15em;
     fill: currentColor;
     overflow: hidden;
+    cursor: pointer;
 }
 </style>

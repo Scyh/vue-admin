@@ -1,7 +1,7 @@
 <template>
     <div class="side-item" v-if="!route.hide">
         <el-menu-item v-if="isBase && (!route.children || isRoot())" :index="resolvePath(baseRoute(route, 'path'))">
-            <alink :icon="baseRoute(route, 'meta.icon')" :title="route.meta.title" />
+            <alink :icon="baseRoute(route, 'meta.icon')" :title="baseRoute(route, 'meta.title')" />
         </el-menu-item>
 
         <el-menu-item v-else-if="!route.children" :index="resolvePath(route.path)">
@@ -42,7 +42,7 @@ export default {
             const _route = route.children && route.children[0] || route;
             if (attr.includes('.')) {
                 return attr.split('.').reduce((data, item) => {
-                    return data = data[item]
+                    return data = data[item] || {}
                 }, _route);
             } else {
                 return _route[attr];

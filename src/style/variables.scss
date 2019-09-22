@@ -1,12 +1,15 @@
-$headerHeight: 60px;
+$headerHeight: 60px;    // 顶部高度
 
-$sidebarWidth: 200px;
-$sidebarCollapse: 64px;
+$sidebarWidth: 200px;   // 左侧菜单展开宽度
+$sidebarCollapse: 64px; // 左侧菜单折叠宽度
+$rightSideWidth: 280px; // 右边侧栏宽度
+
 $sidebarBgColor: #1D2939;
 $sidebarTextColor: #adb5bd;
 $sidebarActiveColor: #ffffff;
 
 $borderColor: rgba(0, 0, 0, .15);
+$lightBlue: #20A0FF;
 
 :export {
     sidebarBgColor: $sidebarBgColor;

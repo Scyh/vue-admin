@@ -1,5 +1,5 @@
 <template>
-    <div class="lo-sidebar">
+    <div :class='["lo-sidebar", { "show-right-side": rightSideOpening }]'>
         <el-scrollbar wrap-class="side-wrap">
             <el-menu
                 :default-active="activeRoute"

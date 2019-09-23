@@ -2,7 +2,7 @@
     <div id="layout">
         <lo-header />
         <lo-aside />
-        <!-- <lo-main /> -->
+        <lo-main />
         <right-side />
     </div>
 </template>

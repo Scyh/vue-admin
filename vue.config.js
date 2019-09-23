@@ -32,6 +32,9 @@ module.exports = {
                             `
 			}
 		}
-	},
-    productionSourceMap: true
+    },
+    transpileDependencies: [
+        'vue-echarts',
+        'resize-detector'
+    ]
 }

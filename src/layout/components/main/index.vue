@@ -1,6 +1,6 @@
 <template>
-    <div :class='["lo-main", { "show-right-side": rightSideOpening }]'>
-       <main :class="{ 'expand': sidebarOpening }">
+    <div :class='["lo-main", { "show-right-side": rightSideOpening, "expand": sidebarOpening }]'>
+       <main>
            <el-container>
                <el-main>
                 <router-view />
@@ -23,8 +23,8 @@ export default {
         position: relative;
         @include transition-collapse;
     }
-    > main.expand {
-        margin-left: $sidebarCollapse;
-    }
+}
+.lo-main.expand {
+    margin-left: $sidebarCollapse;
 }
 </style>

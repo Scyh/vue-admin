@@ -13,10 +13,11 @@ import store from './store/index'
 import '@/icons'
 
 import countTo from '@/components/countTo'
-import ECharts from 'vue-echarts'
+import vECharts from 'vue-echarts/components/ECharts.vue'
+import ECharts from 'echarts'
 
 Vue.component('countTo', countTo)
-Vue.component('v-chart', ECharts)
+Vue.component('v-chart', vECharts)
 
 // import 'element-ui/lib/theme-chalk/index.css'
 // import { Button, Input } from 'element-ui'

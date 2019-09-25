@@ -1,0 +1,9 @@
+/* 右边侧栏 */
+.right-side {
+    .el-switch {
+        transform: scale(.9)
+    }
+    .el-switch__label:not(.is-active) {
+        color: rgba(#fff, .5)
+    }
+}

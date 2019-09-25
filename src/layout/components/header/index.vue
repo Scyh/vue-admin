@@ -1,7 +1,7 @@
 <template>
 <!-- rightSideOpening -->
     <header :class='["lo-header", { "show-right-side": rightSideOpening }]'>
-        <div v-show="logo" :class="['lo-header-left', 'logo', { 'collapse': sidebarOpening }]">BRAND</div>
+        <div :class="['lo-header-left', 'logo', { 'collapse': sidebarOpening }]">BRAND</div>
         <div class="lo-header-right">
             <div class="meau-collapse" @click="toggleSidebar">
                 <icon-svg :name="sidebarOpening ? 'menuon' : 'menuoff'" />
@@ -16,7 +16,7 @@
                     </el-badge>
                     <div class="user-meta user-name">{{user.user_name}}</div>
                     <div class="user-meta user-profile w-32">
-                        <img class="circle" src="../../../assets/profile.png">
+                        <img class="circle" src="@/assets/profile.png">
                     </div>
                 </div>
                 <div class="setting" @click="toggleRightSide">
@@ -41,6 +41,7 @@ export default {
     height: $headerHeight;
     line-height: $headerHeight;
     box-shadow: 0 1px 4px $borderColor;
+    background: $headerColor;
     .lo-header-left {
         position: fixed;
         top: 0;

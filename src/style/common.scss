@@ -20,3 +20,49 @@ p {
     margin: 0;
     padding: 0;
 }
+
+h1,h2,h3,h4,h5,h6 {
+    margin: 0;
+    padding: 0;
+}
+
+$font: 12,13,14,15,18,20;
+@each $i in $font {
+    .font-#{$i} {
+        font-size: $i + px;
+    }
+}
+
+/* 边距 */
+.mg-b-15 {
+    margin-bottom: 15px;
+}
+
+
+/* 卡片标题 */
+.card-title {
+    margin-bottom: 8px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.el-progress.danger {
+    .el-progress-bar__inner {
+        background-color: #d9534f
+    }
+}
+.el-progress.primary {
+    .el-progress-bar__inner {
+        background-color: #337ab7
+    }
+}
+.el-progress.normal {
+    .el-progress-bar__inner {
+        background-color: #5bc0de
+    }
+}
+.el-progress.warning {
+    .el-progress-bar__inner {
+        background-color: #f0ad4e
+    }
+}

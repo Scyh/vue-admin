@@ -22,16 +22,37 @@
 
         <el-row :gutter="20">
             <el-col :span="16">
+                <!-- 图表 -->
                 <el-card class="box-card">
                     <v-chart :options="option" :autoresize="true" />
                 </el-card>
+
+                <el-card class="box-card">
+                    <p class="card-title">这里是标题</p>
+                    <p class="card-subtitle mg-b-15">这是副标题</p>
+                    
+                    <el-table :data="tableData" style="width: 100%" :show-header="false">
+                        <el-table-column label="日期" >
+                            <template slot-scope="scope">
+                                <el-avatar :size="36" :src="scope.row.avatar" :key="scope.row.avatar"></el-avatar>
+                            </template>
+                        </el-table-column>
+                        <el-table-column prop="username"></el-table-column>
+                        <el-table-column prop="date"></el-table-column>
+                        <el-table-column >
+                            <template slot-scope="scope">
+                                <el-avatar :size="36" :src="scope.row.avatar" :key="scope.row.avatar"></el-avatar>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                </el-card>
+
             </el-col>
 
             <el-col :span="8">
                 <el-card class="box-card">
                     <p class="card-title">这里是标题</p>
-                    <p class="font-12 mg-b-15">这是副标题</p>
-                    
+                    <p class="card-subtitle mg-b-15">这是副标题</p>
                     <div class="progress-box">
                         <ul>
                             <li v-for="i in progresses" :key="i.title">
@@ -67,13 +88,20 @@ export default {
                 { title: '这还是一句描述', progress: 56, type: 'warning' },
                 { title: '这确实是一句描述', progress: 90 }
             ],
-            option: option
+            option: option,
+            tableData: [
+                { username: '张三三', avatar: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png', date: '2019/09/25', option: {}, },
+                { username: '张三三', avatar: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png', date: '2019/09/25', option: {}, },
+                { username: '张三三', avatar: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png', date: '2019/09/25', option: {}, },
+                // { username: '李四', avatar: '', date: '2019/09/25', option: {}, },
+                // { username: '王五五', avatar: '', date: '2019/09/25', option: {}, },
+                // { username: '赵六六', avatar: '', date: '2019/09/25', option: {}, },
+                // { username: '田七', avatar: '', date: '2019/09/25', option: {}, },
+            ],
         }
     },
     methods: {
-        resize() {
-            console.log(this)
-        }
+        
     }
 }
 </script>

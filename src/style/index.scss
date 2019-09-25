@@ -38,3 +38,19 @@ body {
 #layout .show-right-side {
     transform: translatex(-$rightSideWidth);
 }
+
+.box-card {
+    margin-bottom: 20px;
+    
+    /* 卡片标题 */
+    .card-title {
+        margin-bottom: 8px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .card-subtitle {
+        font-size: 12px;
+        color: #ccc;
+    }
+}

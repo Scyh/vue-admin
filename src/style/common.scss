@@ -37,32 +37,3 @@ $font: 12,13,14,15,18,20;
 .mg-b-15 {
     margin-bottom: 15px;
 }
-
-
-/* 卡片标题 */
-.card-title {
-    margin-bottom: 8px;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.el-progress.danger {
-    .el-progress-bar__inner {
-        background-color: #d9534f
-    }
-}
-.el-progress.primary {
-    .el-progress-bar__inner {
-        background-color: #337ab7
-    }
-}
-.el-progress.normal {
-    .el-progress-bar__inner {
-        background-color: #5bc0de
-    }
-}
-.el-progress.warning {
-    .el-progress-bar__inner {
-        background-color: #f0ad4e
-    }
-}

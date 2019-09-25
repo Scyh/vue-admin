@@ -16,7 +16,7 @@
                     </el-badge>
                     <div class="user-meta user-name">{{user.user_name}}</div>
                     <div class="user-meta user-profile w-32">
-                        <img class="circle" src="@/assets/profile.png">
+                        <img class="circle" src="@/assets/avatar.png">
                     </div>
                 </div>
                 <div class="setting" @click="toggleRightSide">

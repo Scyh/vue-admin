@@ -1,5 +1,5 @@
 <template>
-    <div id="layout" :class='{"mask": mask}' @click="closeMask($event)">
+    <div id="layout" :class='{"mask": mask}' @click.stop.prevent="closeMask($event)">
         <lo-header />
         <lo-aside />
         <lo-main />

@@ -30,8 +30,8 @@
                 <el-card class="box-card">
                     <p class="card-title">这里是标题</p>
                     <p class="card-subtitle mg-b-15">这是副标题</p>
-                    
-                    <el-table :data="tableData" style="width: 100%" :show-header="false">
+                    <!-- 表格 -->
+                    <el-table :data="tableData" style="width: 100%" class="table-1" :show-header="false">
                         <el-table-column label="日期" >
                             <template slot-scope="scope">
                                 <el-avatar :size="36" :src="scope.row.avatar" :key="scope.row.avatar"></el-avatar>
@@ -41,7 +41,21 @@
                         <el-table-column prop="date"></el-table-column>
                         <el-table-column >
                             <template slot-scope="scope">
-                                <el-avatar :size="36" :src="scope.row.avatar" :key="scope.row.avatar"></el-avatar>
+                                <v-chart :options="scope.row.option" />
+                            </template>
+                        </el-table-column>
+                        <el-table-column align="right">
+                            <template slot-scope="scope">
+                                <el-dropdown>
+                                    <span class="el-dropdown-link">
+                                        <icon-svg name="more" />
+                                    </span>
+                                    <el-dropdown-menu slot="dropdown">
+                                        <el-dropdown-item>操作一</el-dropdown-item>
+                                        <el-dropdown-item divided>操作二</el-dropdown-item>
+                                        <el-dropdown-item disabled>操作三</el-dropdown-item>
+                                    </el-dropdown-menu>
+                                </el-dropdown>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -50,7 +64,9 @@
             </el-col>
 
             <el-col :span="8">
-                <el-card class="box-card">
+
+                <!-- 进度条 -->
+                <!-- <el-card class="box-card">
                     <p class="card-title">这里是标题</p>
                     <p class="card-subtitle mg-b-15">这是副标题</p>
                     <div class="progress-box">
@@ -61,14 +77,22 @@
                             </li>
                         </ul>
                     </div>
-                </el-card>
+                </el-card> -->
+
+                <!-- 广告 -->
+                <!-- <el-card class="box-card bg-primary">
+                    <p class="card-title font-13 color-white">这里是标题</p>
+                    <p class="card-subtitle mg-b-15">这是副标题</p>
+                    <icon-svg :className="['bg']" name="river" />
+                </el-card> -->
+
             </el-col>
         </el-row>
     </div>
 </template>
 <script>
 import mediaCard from '@/components/media'
-import { option } from './option'
+import { option, option2 } from './option'
 export default {
     components: {
         mediaCard,
@@ -90,13 +114,9 @@ export default {
             ],
             option: option,
             tableData: [
-                { username: '张三三', avatar: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png', date: '2019/09/25', option: {}, },
-                { username: '张三三', avatar: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png', date: '2019/09/25', option: {}, },
-                { username: '张三三', avatar: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png', date: '2019/09/25', option: {}, },
-                // { username: '李四', avatar: '', date: '2019/09/25', option: {}, },
-                // { username: '王五五', avatar: '', date: '2019/09/25', option: {}, },
-                // { username: '赵六六', avatar: '', date: '2019/09/25', option: {}, },
-                // { username: '田七', avatar: '', date: '2019/09/25', option: {}, },
+                { username: '张三三', avatar: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png', date: '2019/09/25', option: option2 },
+                { username: '张三三', avatar: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png', date: '2019/09/25', option: option2, },
+                { username: '张三三', avatar: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png', date: '2019/09/25', option: option2, },
             ],
         }
     },
@@ -117,5 +137,17 @@ export default {
 .echarts {
     width: 100%!important;
     height: 300px!important;
+}
+
+.table-1 {
+    .echarts {
+        width: 100px!important;
+        height: 30px!important;
+    }
+}
+.bg {
+    width: 100%;
+    height: 100%;
+    cursor: default;
 }
 </style>

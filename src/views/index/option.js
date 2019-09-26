@@ -84,3 +84,55 @@ export const option = {
         }
     ]
 };
+
+export const option2 = {
+    // color: [],
+    grid: {
+        show: false,
+        top: 5,
+        bottom: 0,
+        right: 0,
+        left: 0
+    },
+    tooltip : {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'line',
+            axis: 'x',
+        },
+        textStyle: {
+            fontSize: 12
+        },
+        padding: [2,5,2,5],
+        formatter: '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:5px;height:5px;background-color:rgb(204,0,1);"></span>' + '{b0}: {c0}',
+        // formatter: function(params) {
+        //     // var result = '';
+        //     // params.forEach(function (item) {
+        //     //     result += item.marker + item.value;
+        //     // });
+        //     // return result;
+        // },
+        position: function(point, params, dom, rect, size) {
+            return [point[0], '0']
+        },
+    },
+    xAxis: {
+        show: false,
+        type: 'category',
+        data: [1,2,3,4,5,6]
+    },
+    yAxis: {
+        show: false,
+        type: 'value'
+    },
+    series: [{
+        type: 'line',
+        symbol: 'circle',
+        itemStyle: {
+            color: 'red',
+            borderColor: 'red'
+        },
+        data: [1,2,4,2,3,1],
+    }]
+   
+}

@@ -29,11 +29,19 @@ h1,h2,h3,h4,h5,h6 {
 $font: 12,13,14,15,18,20;
 @each $i in $font {
     .font-#{$i} {
-        font-size: $i + px;
+        font-size: $i + px + '!important';
     }
 }
 
 /* 边距 */
 .mg-b-15 {
     margin-bottom: 15px;
+}
+
+.color-white {
+    color: #fff!important;
+}
+
+.bg-primary {
+    background-color: #0866C6 !important
 }

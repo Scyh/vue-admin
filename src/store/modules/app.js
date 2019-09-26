@@ -18,7 +18,7 @@ export default  {
             state.mask = true;
         },
         closeMask(state, event) {
-            if (event.target.className.includes('mask')) {
+            if (typeof event.target.className === 'string' && event.target.className.includes('mask')) {
                 if (state.rightSide) {
                     state.rightSide = false;
                     state.mask = false;

@@ -5,7 +5,7 @@
   "scripts": {
     "svgo": "svgo -f ./src/icons/svgs",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": " cross-env NODE_ENV=production vue-cli-service build"
   },
   "dependencies": {
     "core-js": "^2.6.5",
@@ -22,6 +22,8 @@
     "@vue/cli-plugin-babel": "^3.11.0",
     "@vue/cli-service": "^3.11.0",
     "babel-plugin-component": "^1.1.1",
+    "compression-webpack-plugin": "^3.0.0",
+    "cross-env": "^6.0.0",
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.0",
     "svg-sprite-loader": "^4.1.6",

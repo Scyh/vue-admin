@@ -1,5 +1,5 @@
 # vue-admin
-模仿网站[vue-element-admin]: https://github.com/PanJiaChen/vue-element-admin [bracket]: http://themepixels.me/bracket/app/index.html
+模仿网站 [vue-element-admin](https://github.com/PanJiaChen/vue-element-admin "vue-element-admin") 和 [bracket](http://themepixels.me/bracket/app/index.html "bracket")
 
 ## 技术栈
 1. vue

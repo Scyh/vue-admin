@@ -7,17 +7,23 @@
         <div class="flex-1">
             <ul class="share dis-flex just-end font-18">
                 <li class="share-item">
-                    <icon-svg name="wx" />
+                    <icon-svg :className='["font-24"]' name="wx" />
                 </li>
                 <li class="share-item">
-                    <icon-svg name="wb" />
+                    <icon-svg :className='["font-24"]' name="wb" />
                 </li>
             </ul>
         </div>
     </footer>
 </template>
 <style lang="scss">
-    .copyright {
-        margin: 20px 0;
+.copyright {
+    margin: 20px 0;
+    .share-item {
+        margin-left: 10px;
+        &:hover {
+            color: #333;
+        }
     }
+}
 </style>

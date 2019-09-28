@@ -1,29 +1,18 @@
-# vue-login
+# vue-admin
+模仿网站[vue-element-admin]: https://github.com/PanJiaChen/vue-element-admin [bracket]: http://themepixels.me/bracket/app/index.html
 
-## Project setup
-```
-npm install
-```
+## 技术栈
+1. vue
+2. vue-router
+3. vuex
+4. element-ui
+5. echarts
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 预实现功能
+1. 登录 √
+2. 动态路由 √
+3. 侧栏开关 √
+4. 顶部固定 √
+5. 锁屏
+6. excel导入/导出
+7. 个人主页

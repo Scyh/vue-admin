@@ -12,7 +12,7 @@ export default  {
     },
     mutations: {
         toggleHeaderFixed(state) {
-            state.headerFixed = !state.headerFixed;
+            state.headerFixed = !state.headerFixed
         },
 
         toggleSidebar(state) {

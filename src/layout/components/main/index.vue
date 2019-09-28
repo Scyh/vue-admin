@@ -1,5 +1,5 @@
-<template>
-    <div :class='["lo-main", { "show-right-side": rightSideOpening, "expand": sidebarOpening }]'>
+<template functional>
+    <div class="lo-main">
        <main>
            <el-container>
                <el-main>
@@ -9,13 +9,6 @@
        </main>
     </div>
 </template>
-<script>
-import appMixin from '@/layout/mixin/app'
-
-export default {
-    mixins: [appMixin],
-}
-</script>
 <style scoped lang="scss">
 .lo-main {
     margin-left: $sidebarWidth;
@@ -23,8 +16,5 @@ export default {
         position: relative;
         @include transition-collapse;
     }
-}
-.lo-main.expand {
-    margin-left: $sidebarCollapse;
 }
 </style>

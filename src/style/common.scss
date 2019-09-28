@@ -26,7 +26,7 @@ h1,h2,h3,h4,h5,h6 {
     padding: 0;
 }
 
-$font: 12,13,14,15,18,20;
+$font: 12,13,14,15,18,20,24,26,28,56;
 @each $i in $font {
     .font-#{$i} {
         font-size: $i + px + '!important';
@@ -34,6 +34,15 @@ $font: 12,13,14,15,18,20;
 }
 
 /* 边距 */
+.mg-y-10 {
+    margin-top: 10px;
+}
+.mg-b-5 {
+    margin-bottom: 5px;
+}
+.mg-b-10 {
+    margin-bottom: 10px;
+}
 .mg-b-15 {
     margin-bottom: 15px;
 }
@@ -41,7 +50,48 @@ $font: 12,13,14,15,18,20;
 .color-white {
     color: #fff!important;
 }
+.color-normal {
+    color: $textColor
+}
+
+.text-center {
+    text-align: center;
+}
 
 .bg-primary {
     background-color: #0866C6 !important
+}
+
+.dis-flex {
+    display: flex;
+}
+.flex-1 {
+    flex: 1;
+}
+.flex-column {
+    flex-direction: column;
+}
+.just-start {
+    justify-content: flex-start;
+}
+.just-end {
+    justify-content: flex-end;
+}
+.just-center {
+    justify-content: center;
+}
+.just-around {
+    justify-content: space-around;
+}
+.just-bewteen {
+    justify-content: space-between;
+}
+.align-center {
+    align-items: center;
+}
+.align-start {
+    align-items: flex-start;
+}
+.align-end {
+    align-items: flex-end;
 }

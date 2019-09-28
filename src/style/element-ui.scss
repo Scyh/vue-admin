@@ -8,6 +8,7 @@
     }
 }
 
+/* 进度条 */
 .el-progress.danger {
     .el-progress-bar__inner {
         background-color: #d9534f
@@ -26,5 +27,17 @@
 .el-progress.warning {
     .el-progress-bar__inner {
         background-color: #f0ad4e
+    }
+}
+
+/* 轮播图 */
+@media screen and (max-width: 1210px) {
+    .el-carousel__button {
+        width: 26px;
+    }
+}
+@media screen and (max-width: 1112px) {
+    .el-carousel__button {
+        width: 22px;
     }
 }

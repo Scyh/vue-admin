@@ -1,6 +1,7 @@
 export default  {
     namespaced: true,
     state: {
+        headerFixed: true,
         sidebar: {
             close: false,
             animation: true,
@@ -10,6 +11,10 @@ export default  {
         gutter: 20,
     },
     mutations: {
+        toggleHeaderFixed(state) {
+            state.headerFixed = !state.headerFixed;
+        },
+
         toggleSidebar(state) {
             state.sidebar.close = !state.sidebar.close
         },
@@ -27,8 +32,9 @@ export default  {
         }        
     },
     getters: {
-        sidebarOpening: state => state.sidebar.close,
+        sidebarClosing: state => state.sidebar.close,
         rightSideOpening: state => state.rightSide,
-        mask: state => state.mask
+        mask: state => state.mask,
+        headerFixed: state => state.headerFixed
     }
 }

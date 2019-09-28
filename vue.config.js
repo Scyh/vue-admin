@@ -30,6 +30,13 @@ module.exports = {
                     name: 'chunk-echarts',
                     priority: 9,
                     test: /[\\/]node_modules[\\/]_?echarts(.*)/
+                },
+                commons: {
+                    name: 'chunk-common',
+                    priority: 8,
+                    test: resolve('src/components'),
+                    reuseExistingChunk: true,
+                    minChunks: 3,
                 }
             }
         })

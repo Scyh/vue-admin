@@ -15,30 +15,6 @@ body {
     background-color: $bodyBgColor;
 }
 
-#layout {
-    height: 100%;
-    width: 100%;
-    overflow-x: hidden;
-    overflow-y: auto;
-    > * {
-        box-sizing: border-box;
-        @include transition-collapse;
-    }
-}
-#layout.mask::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 999;
-    background-color: rgba(29, 41, 57, 0.25);
-}
-#layout .show-right-side {
-    transform: translatex(-$rightSideWidth);
-}
-
 .box-card {
     margin-bottom: 20px;
     

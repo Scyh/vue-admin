@@ -1,12 +1,13 @@
 <template>
-    <div :class='["right-side", { "open": rightSideOpening }]'>
+    <div class="right-side">
         <ul>
             <li class="setting-item" v-for="i in settings" :key="i.name">
-                <el-row type="flex">
-                    <el-col tag="span" :span="10" class="setting-text">{{i.name}}</el-col>
-                    <el-col :span="14">
-                        <el-switch  active-text="on" inactive-text="off"  v-model="i.value"></el-switch>
+                <el-row>
+                    <el-col tag="span" :span="12" class="setting-text font-12 color-white mg-b-5">{{i.name}}</el-col>
+                    <el-col :span="12">
+                        <el-switch active-text="on" inactive-text="off" v-model="i.value" @change="changeHandle(i.changeFn)" ></el-switch>
                     </el-col>
+                    <el-col tag="span" :span="24" class="setting-text font-12 color-normal mg-b-10">{{i.description}}</el-col>
                 </el-row>
             </li>
         </ul>
@@ -15,12 +16,15 @@
 <script>
 import appMixin from '@/layout/mixin/app'
 export default {
+    mixins: [appMixin],
     data() {
         return {
             settings: [
                 {
-                    name: '设置一',
-                    value: false,
+                    name: '导航栏固定',
+                    description: '固定后，导航栏会固定在页面的顶部',
+                    value: this.headerFixed,
+                    changeFn: 'toggleHeaderFixed'
                 },
                 {
                     name: '设置二',
@@ -41,7 +45,11 @@ export default {
             ]
         }
     },
-    mixins: [appMixin],
+    methods: {
+        changeHandle: function(fnName) {
+            fnName && this[fnName] && this[fnName]();
+        }
+    }
 }
 </script>
 <style lang="scss" scoped>
@@ -58,13 +66,10 @@ export default {
 
     .setting-item {
         margin: 30px 10px;
-        font-size: 12px;
         .setting-text {
+            text-indent: 3px;
             line-height: 20px;
         }
     }
-}
-.right-side.open {
-    right: 0;
 }
 </style>

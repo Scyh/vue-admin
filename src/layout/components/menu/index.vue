@@ -1,9 +1,9 @@
 <template>
-    <div :class='["lo-sidebar", { "show-right-side": rightSideOpening }]'>
+    <div class="lo-sidebar">
         <el-scrollbar wrap-class="side-wrap">
             <el-menu
                 :default-active="activeRoute"
-                :collapse="sidebarOpening"
+                :collapse="sidebarClosing"
                 :router="true"
                 :background-color="variables.sidebarBgColor"
                 :text-color="variables.sidebarTextColor"

@@ -1,3 +1,9 @@
 @mixin transition-collapse {
     transition: all .2s ease-in-out;
 }
+
+@mixin transition($time: .2s, $mode: ease-in-out, $property...) {
+    transition-property: $property;
+    transition-duration: $time;
+    transition-timing-function: $mode
+}

@@ -61,10 +61,28 @@
                     </el-table>
                 </el-card>
 
+                <el-card>
+                    <p class="card-title mg-b-15">Some Title Here</p>
+                    <div class="dis-flex">
+                        <div class="flex-1">
+                            <p class="font-56">25%</p>
+                            <el-progress :percentage="25" :show-text="false" class="mg-b-10"></el-progress>
+                            <p class="font-13 mg-b-15 color-normal">
+                                This is some text, and others.
+                            </p>
+                            <p class="font-13 color-normal">
+                                This is some text, anther text and so on.
+                            </p>
+                        </div>
+                        <div class="flex-1 text-center">
+                            <el-progress type="circle" :percentage="25" :show-text="false" :stroke-width="12"></el-progress>
+                        </div>
+                    </div>
+                </el-card>
+
             </el-col>
 
             <el-col :span="8">
-
                 <!-- 进度条 -->
                 <el-card class="box-card">
                     <p class="card-title">这里是标题</p>
@@ -87,19 +105,20 @@
                 </el-card>
 
                 <!-- 轮播 -->
-                <!-- <el-card class="box-card"> -->
-                    <el-carousel trigger="click" height="300px" arrow="hover">
-                        <el-carousel-item v-for="item in carousels" :key="item.bgColor">
-                            <div class="carousel-item" :style='{"background-color": item.bgColor }'>
-                                <h3 class="font-14 mg-b-15">{{ item.title }}</h3>
-                                <p class="font-20 color-white mg-b-15">{{ item.content }}</p>
-                                <p class="font-13 color-white">{{item.note}}</p>
-                            </div>
-                        </el-carousel-item>
-                    </el-carousel>
-                <!-- </el-card> -->
-
+                <el-carousel trigger="click" height="300px" arrow="hover">
+                    <el-carousel-item v-for="item in carousels" :key="item.bgColor">
+                        <div class="carousel-item" :style='{"background-color": item.bgColor }'>
+                            <h3 class="font-14 mg-b-15">{{ item.title }}</h3>
+                            <p class="font-20 color-white mg-b-15">{{ item.content }}</p>
+                            <p class="font-13 color-white">{{item.note}}</p>
+                        </div>
+                    </el-carousel-item>
+                </el-carousel>
             </el-col>
+        </el-row>
+
+        <el-row>
+            <copyright />
         </el-row>
     </div>
 </template>
@@ -109,6 +128,7 @@ import { option, option2 } from './option'
 export default {
     components: {
         mediaCard,
+        copyright: () => import('@/components/copyRight')
     },
     data() {
         return {

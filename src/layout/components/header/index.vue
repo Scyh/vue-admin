@@ -1,10 +1,10 @@
 <template>
 <!-- rightSideOpening -->
-    <header :class='["lo-header", { "show-right-side": rightSideOpening }]'>
-        <div :class="['lo-header-left', 'logo', { 'collapse': sidebarOpening }]">BRAND</div>
+    <header class="lo-header">
+        <div :class="['lo-header-left', 'logo', { 'collapse': sidebarClosing }]">BRAND</div>
         <div class="lo-header-right">
             <div class="meau-collapse" @click="toggleSidebar">
-                <icon-svg :name="sidebarOpening ? 'menuon' : 'menuoff'" />
+                <icon-svg :name="sidebarClosing ? 'menuon' : 'menuoff'" />
             </div>
             <div class="lo-header-right-user">
                 <div class="user">
@@ -40,7 +40,6 @@ export default {
 .lo-header {
     height: $headerHeight;
     line-height: $headerHeight;
-    box-shadow: 0 1px 4px $borderColor;
     background: $headerColor;
     .lo-header-left {
         position: fixed;
@@ -62,6 +61,7 @@ export default {
         justify-content: space-between;
         align-items: center;
         margin-left: $sidebarWidth;
+        box-shadow: 0 1px 4px $borderColor;
         @include transition-collapse;
         .lo-header-right-user {
             display: flex;

@@ -3,15 +3,16 @@ import { mapGetters, mapMutations } from "vuex";
 export default {
     computed: {
         ...mapGetters({
-            sidebarOpening: 'app/sidebarOpening',
+            sidebarClosing: 'app/sidebarClosing',
             rightSideOpening: 'app/rightSideOpening',
-            logo: 'app/logo'
+            headerFixed: 'app/headerFixed'
         })
     },
     methods: {
         ...mapMutations({
             toggleSidebar: 'app/toggleSidebar',
-            toggleRightSide: 'app/toggleRightSide'
+            toggleRightSide: 'app/toggleRightSide',
+            toggleHeaderFixed: 'app/toggleHeaderFixed'
         })
     }
 }

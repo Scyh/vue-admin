@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "svgo": "svgo -f ./src/icons/svgs",
-    "serve": "vue-cli-service serve",
-    "build": " cross-env NODE_ENV=production vue-cli-service build"
+    "serve": "cross-env NODE_ENV=development  vue-cli-service serve",
+    "build": " cross-env NODE_ENV=production vue-cli-service build",
+    "preview": "cd dist && cnpm i http-server && http-server"
   },
   "dependencies": {
     "core-js": "^2.6.5",

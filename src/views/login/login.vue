@@ -39,7 +39,7 @@ export default {
         login() {
             this.$refs.form.validate(valid => {
                 if (valid) {
-                    this.$store.dispatch('login', this.form)
+                    this.$store.dispatch('user/login', this.form)
                     .then(userInfo => {
                         this.$router.push({ path: '/' })
                     }).catch(err => {

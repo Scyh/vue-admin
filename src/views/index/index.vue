@@ -23,7 +23,7 @@
         <el-row :gutter="20">
             <el-col :span="16">
                 <!-- 图表 -->
-                <el-card class="box-card">
+                <el-card class="box-card chart-card">
                     <v-chart :options="option" :autoresize="true" />
                 </el-card>
 
@@ -66,7 +66,7 @@
             <el-col :span="8">
 
                 <!-- 进度条 -->
-                <!-- <el-card class="box-card">
+                <el-card class="box-card">
                     <p class="card-title">这里是标题</p>
                     <p class="card-subtitle mg-b-15">这是副标题</p>
                     <div class="progress-box">
@@ -77,14 +77,27 @@
                             </li>
                         </ul>
                     </div>
-                </el-card> -->
+                </el-card>
 
                 <!-- 广告 -->
-                <!-- <el-card class="box-card bg-primary">
+                <el-card class="box-card bg-primary">
                     <p class="card-title font-13 color-white">这里是标题</p>
                     <p class="card-subtitle mg-b-15">这是副标题</p>
                     <icon-svg :className="['bg']" name="river" />
-                </el-card> -->
+                </el-card>
+
+                <!-- 轮播 -->
+                <!-- <el-card class="box-card"> -->
+                    <el-carousel trigger="click" height="300px" arrow="hover">
+                        <el-carousel-item v-for="item in carousels" :key="item.bgColor">
+                            <div class="carousel-item" :style='{"background-color": item.bgColor }'>
+                                <h3 class="font-14 mg-b-15">{{ item.title }}</h3>
+                                <p class="font-20 color-white mg-b-15">{{ item.content }}</p>
+                                <p class="font-13 color-white">{{item.note}}</p>
+                            </div>
+                        </el-carousel-item>
+                    </el-carousel>
+                <!-- </el-card> -->
 
             </el-col>
         </el-row>
@@ -100,10 +113,10 @@ export default {
     data() {
         return {
             medias: [
-                { title: '这是标题一', content: { num: 1202 },  icon: 'home', bgColor: '#00b297' },
-                { title: '这是标题二', content: { num: 2200, prefix: '$' }, icon: 'home', bgColor: '#dc3545' },
-                { title: '这是标题三', content: { num: 54.3, suffix: '%' }, icon: 'home', bgColor: '#0866C6' },
-                { title: '这是标题四', content: { num: 71.5, suffix: '%' }, icon: 'home', bgColor: '#1D2939' }
+                { title: '这是标题一', content: { num: 1202 },  icon: 'home', bgColor: '#ee5253' },
+                { title: '这是标题二', content: { num: 2200, prefix: '$' }, icon: 'home', bgColor: '#ff9f43' },
+                { title: '这是标题三', content: { num: 54.3, suffix: '%' }, icon: 'home', bgColor: '#0abde3' },
+                { title: '这是标题四', content: { num: 71.5, suffix: '%' }, icon: 'home', bgColor: '#10ac84' }
             ],
             progresses: [
                 { title: '这是一句描述', progress: 30, type: 'danger' },
@@ -118,6 +131,12 @@ export default {
                 { username: '张三三', avatar: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png', date: '2019/09/25', option: option2, },
                 { username: '张三三', avatar: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png', date: '2019/09/25', option: option2, },
             ],
+            carousels: [
+                { title: 'some title', content: 'This is something to show. xxx...', note: 'a note', bgColor: '#222f3e' },
+                { title: 'some title', content: 'This is something to show. xxx...', note: 'a note', bgColor: '#576574' },
+                { title: 'some title', content: 'This is something to show. xxx...', note: 'a note', bgColor: '#303952' },
+                { title: 'some title', content: 'This is something to show. xxx...', note: 'a note', bgColor: '#8395a7' },
+            ]
         }
     },
     methods: {
@@ -133,10 +152,12 @@ export default {
         line-height: 0;
     }
 }
-
-.echarts {
-    width: 100%!important;
-    height: 300px!important;
+.chart-card {
+    min-height: 340px;
+    .echarts {
+        width: 100%!important;
+        height: 300px!important;
+    }
 }
 
 .table-1 {
@@ -149,5 +170,9 @@ export default {
     width: 100%;
     height: 100%;
     cursor: default;
+}
+.carousel-item {
+    height: 100%;
+    padding: 40px 20px 0 20px;
 }
 </style>

@@ -126,6 +126,7 @@ export const option2 = {
         type: 'value'
     },
     series: [{
+        name: '',
         type: 'line',
         symbol: 'circle',
         itemStyle: {

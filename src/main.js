@@ -4,26 +4,14 @@ import 'normalize.css/normalize.css'
 import '@/style/index.scss'
 import ElementUI from 'element-ui'
 
-
 import App from './App.vue'
 import { router } from '@/router'
 import store from './store/index'
 
-
 import '@/icons'
 
-import countTo from '@/components/countTo'
-import vECharts from 'vue-echarts/components/ECharts.vue'
-import ECharts from 'echarts'
-
-Vue.component('countTo', countTo)
-Vue.component('v-chart', vECharts)
-
-// import 'element-ui/lib/theme-chalk/index.css'
-// import { Button, Input } from 'element-ui'
-
-// Vue.component(Button.name, Button)
-// Vue.component(Input.name, Input)
+Vue.component('countTo', () => import('@/components/countTo'))
+Vue.component('v-chart', () => import('@/components/echart'))
 
 Vue.use(ElementUI)
 

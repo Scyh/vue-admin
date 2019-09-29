@@ -8,7 +8,6 @@ export default {
     },
 
     mutations: {
-
         SET_USER_ROUTES(state, routes) {
             state.user_routes = routes;
         }

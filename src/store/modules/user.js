@@ -7,12 +7,10 @@ export default {
         user: null,
     },
     mutations: {
-
         SET_TOKEN(state, token) {
             state.token = token;
             Session.setToken(JSON.stringify(token))
         },
-
         SET_USER_INFO(state, info) {
             state.user = info;
         },
@@ -29,7 +27,6 @@ export default {
             let data = Session.getToken();
             commit('SET_USER_INFO', data);
             return data;
-        },
-
+        }
     },
 }

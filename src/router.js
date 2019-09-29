@@ -76,6 +76,13 @@ const basicRouter = [
             
         },
         {
+            path: '/lock',
+            meta: { title: '锁屏', icon: 'lock' },
+            grade: 1,
+            hide: true,
+            component: () => import('@/views/lock')
+        },
+        {
             path: '/admin',
             name: 'admin',
             meta: { title: '管理员', icon: 'admin' },
@@ -141,7 +148,6 @@ const basicRouter = [
         }
     ]
 
-
 const createRouter = () => {
     return new Router({
         routes: basicRouter
@@ -152,7 +158,6 @@ const router = createRouter();
 
 router.beforeEach( async (to, from, next) => {
     document.title = to.meta && to.meta.title || 'vue';
-    
     if (Session.getToken()) {
         if (to.path === '/login') next('/');
         else {
@@ -162,12 +167,21 @@ router.beforeEach( async (to, from, next) => {
                     const routes = await Store.dispatch('permission/getUserRoutes', user);
                     router.addRoutes(routes);
                     
-                    next({...to, replace: true });
+                    if (!!Session.getLock()) next('/lock');
+                    else next({...to, replace: true });
                 } catch(err) {
                     console.log('err: ', err);
                     next(`/login?to=${to.fullPath}`)
                 }
-            } else next();
+            } else {
+                if (!!Session.getLock()) {
+                    if (to.path === '/lock') next();
+                    else next('/lock');
+                } else {
+                    if (to.path === '/lock') next('/');
+                    else next();
+                }
+            }
         }
     } else {
         if (to.path === '/login') next();

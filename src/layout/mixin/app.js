@@ -1,4 +1,4 @@
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters, mapMutations, mapActions } from "vuex";
 
 export default {
     computed: {
@@ -12,7 +12,10 @@ export default {
         ...mapMutations({
             toggleSidebar: 'app/toggleSidebar',
             toggleRightSide: 'app/toggleRightSide',
-            toggleHeaderFixed: 'app/toggleHeaderFixed'
+            toggleHeaderFixed: 'app/toggleHeaderFixed',
+        }),
+        ...mapActions({
+            lock: 'app/lock',
         })
     }
 }

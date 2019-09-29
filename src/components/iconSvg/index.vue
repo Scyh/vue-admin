@@ -1,5 +1,5 @@
 <template functional>
-    <svg :class="['icon-svg', ...props.className]" v-on="listeners">
+    <svg :class="['icon-svg', ...props.className]" :style="{fontSize: props.size + 'px'}" v-on="listeners">
         <use :xlink:href="'#icon-' + props.name" />
     </svg>
 </template> 

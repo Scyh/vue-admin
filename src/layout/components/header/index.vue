@@ -11,9 +11,12 @@
                     <el-badge is-dot class="user-meta user-email">
                         <icon-svg name="email" />
                     </el-badge>
-                    <el-badge is-dot class="user-meta user-email">
+                    <el-badge is-dot class="user-meta user-bell">
                         <icon-svg name="bell" />
                     </el-badge>
+                    <span class="user-meta" @click.stop="lockHandle">
+                        <icon-svg name="lock1"></icon-svg>
+                    </span>
                     <div class="user-meta user-name">{{user.user_name}}</div>
                     <div class="user-meta user-profile w-32">
                         <img class="circle" src="@/assets/avatar.png">
@@ -33,6 +36,23 @@ export default {
     mixins: [appMixin],
     computed: {
         ...mapGetters(['user'])
+    },
+    methods: {
+        lockHandle() {
+            console.log(this.$route)
+            this.$prompt('请输入锁屏密码', '锁屏设置', {
+                confirmButtonText: '锁屏',
+                cancelButtonText: '取消',
+                inputPattern: /\w{3,16}/,
+                inputErrorMessage: '请输入由字母、数字或下划线组成的3到16位的密码'
+            }).then(async rst => {
+                await this.lock({
+                    password: rst.value,
+                    route: this.$route.fullPath
+                });
+                this.$router.push('/lock');
+            }).catch(() => {})
+        }
     }
 }
 </script>

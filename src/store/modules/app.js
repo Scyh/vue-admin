@@ -1,3 +1,6 @@
+import Session from '@/utils/session'
+import { hex_sha1 } from '@/utils/sha1'
+
 export default  {
     namespaced: true,
     state: {
@@ -8,13 +11,16 @@ export default  {
         },
         rightSide: false,
         mask: false,
-        gutter: 20,
+        lock: Session.getLock() || {
+            password: '',
+            route: '',
+            isLocked: false
+        }
     },
     mutations: {
         toggleHeaderFixed(state) {
             state.headerFixed = !state.headerFixed
         },
-
         toggleSidebar(state) {
             state.sidebar.close = !state.sidebar.close
         },
@@ -29,7 +35,39 @@ export default  {
                     state.mask = false;
                 }
             }
-        }        
+        },
+        lock(state, { password, route }) {
+            state.lock.isLocked = true,
+            state.lock.password = password;
+            state.lock.route = route;
+            Session.lock(JSON.stringify({
+                password,
+                route
+            }));
+        },
+        unlock(state, password) {
+            let _password = hex_sha1(password);
+            if (_password === state.lock.password) {
+                state.lock.isLocked = false;
+                state.lock.password = '';
+                Session.unlock();
+            }
+            return false
+        }
+    },
+    actions: {
+        async lock({commit}, { password, route }) {
+            commit('lock', {
+                password: hex_sha1(password),
+                route
+            });
+        },
+        async unlock({commit, state}, password) {
+            if (hex_sha1(password) === state.lock.password) {
+                commit('unlock', password);
+                return state.lock.route
+            }
+        }
     },
     getters: {
         sidebarClosing: state => state.sidebar.close,

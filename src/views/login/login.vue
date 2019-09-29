@@ -3,7 +3,7 @@
         <p>登录页面</p>
         <el-row type="flex" justify="center">
             <el-col :span="6">
-                <el-form ref="form" :model="form" :rules="rules" label-width="80px" @submit="login"  @keyup.13.native="login">
+                <el-form ref="form" :model="form" :rules="rules" label-width="80px" @submit.native.prevent="login">
                     <el-form-item label="用户名" prop="user_name">
                         <el-input v-model="form.user_name" placeholder="请输入用户名"></el-input>
                     </el-form-item>

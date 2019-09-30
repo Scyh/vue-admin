@@ -87,7 +87,21 @@ const basicRouter = [
             name: 'admin',
             meta: { title: '管理员', icon: 'admin' },
             grade: 0,
-            component: () => import('@/views/admin/admin')
+            component: () => import('@/views/admin')
+        },
+        {
+            path: '/self',
+            grade: 0,
+            component: layout,
+            children: [
+                {
+                    path: '',
+                    name: 'self',
+                    meta: { title: '个人主页', icon: 'self' },
+                    grade: 0,
+                    component: () => import('@/views/self'),
+                }
+            ]
         },
         {
             path: '/menu',

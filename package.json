@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "svgo": "svgo -f ./src/icons/svgs",
-    "serve": "cross-env NODE_ENV=development  vue-cli-service serve",
-    "build": " cross-env NODE_ENV=production vue-cli-service build",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
     "preview": "cd dist && cnpm i http-server && http-server"
   },
   "dependencies": {
+    "axios": "^0.19.0",
     "core-js": "^2.6.5",
     "echarts": "^4.3.0",
     "element-ui": "^2.12.0",
@@ -25,6 +26,7 @@
     "babel-plugin-component": "^1.1.1",
     "compression-webpack-plugin": "^3.0.0",
     "cross-env": "^6.0.0",
+    "mockjs": "^1.0.1-beta3",
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.0",
     "svg-sprite-loader": "^4.1.6",

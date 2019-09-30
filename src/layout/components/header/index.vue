@@ -3,7 +3,7 @@
     <header class="lo-header">
         <div :class="['lo-header-left', 'logo', { 'collapse': sidebarClosing }]">BRAND</div>
         <div class="lo-header-right">
-            <div class="meau-collapse" @click="toggleSidebar">
+            <div :class="['meau-collapse', { 'fixed': sidebarClosing }]" @click="toggleSidebar">
                 <icon-svg :name="sidebarClosing ? 'menuon' : 'menuoff'" />
             </div>
             <div class="lo-header-right-user">
@@ -77,13 +77,16 @@ export default {
         margin-left: 0;
     }
     .lo-header-right {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        height: 100%;
         margin-left: $sidebarWidth;
         box-shadow: 0 1px 4px $borderColor;
+        overflow: hidden;
         @include transition-collapse;
+        .meau-collapse.fixed {
+            position: fixed;
+        }
         .lo-header-right-user {
+            float: right;
             display: flex;
             justify-content: flex-end;
             align-items: center;

@@ -125,10 +125,17 @@
 <script>
 import mediaCard from '@/components/media'
 import { option, option2 } from './option'
+import { test } from '@/api'
+
 export default {
     components: {
         mediaCard,
         copyright: () => import('@/components/copyRight')
+    },
+    created() {
+        test().then(rst => {
+            console.log(rst)
+        })
     },
     data() {
         return {

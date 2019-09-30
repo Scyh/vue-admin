@@ -5,7 +5,20 @@ function resolve(dir) {
     return path.resolve(__dirname, dir);
 }
 
+const port = process.env.port || 9527
+
 module.exports = {
+    devServer: {
+        proxy: {
+            [process.env.VUE_APP_BASEURL]: {
+                target: `http://127.0.0.1:${port}`,
+                pathReWrite: {
+                    [`^${process.BASEURL}`]: ''
+                }
+            }
+        },
+        after: require('./src/mock/server')
+    },
     configureWebpack: config => {
     },
     chainWebpack: config => {
@@ -37,6 +50,13 @@ module.exports = {
                     test: resolve('src/components'),
                     reuseExistingChunk: true,
                     minChunks: 3,
+                },
+                utils: {
+                    name: 'chunk-utils',
+                    priority: 7,
+                    test: resolve('src/utils'),
+                    reuseExistingChunk: true,
+                    minChunks: 3
                 }
             }
         })

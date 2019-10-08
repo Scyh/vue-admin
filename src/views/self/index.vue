@@ -1,78 +1,100 @@
 <template>
     <div id="self_page">
-        <el-card>
-            <section class="self-box dis-flex just-center">
-                <div class="self-avatar dis-flex align-center">
-                    <el-avatar shape="square" :size="128" icon="el-icon-user" src></el-avatar>
-                </div>
-                <div class="flex-1 font-14">
-                    <el-row>
-                        <el-col :span="8">
-                            <el-row :gutter="20">
-                                
-                                <el-col :span="12" v-for="i in user" :key="i.key">
-                                    <div class="user-info-item">
-                                        <p class="color-normal mg-b-5">
-                                            {{i.text}}
-                                            <!-- <icon-svg name="lock" /> -->
-                                        </p>
-                                        <p>{{ i.value }}</p>
-                                    </div>
-                                </el-col>
-                            </el-row>
-                        </el-col>
-                        <el-col :span="1" class='text-left'>
-                            <icon-svg name="edit1" />
-                        </el-col>
-                    </el-row>
-                </div>
-            </section>
+        <el-card class="self-card">
+            <span class="self-edit" @click="isEdit = true">
+                <icon-svg name="edit1" />
+            </span>
+
+            <el-avatar @click.native="isChangeAvatar = true" class="self-avatar" shape="square" :size="128" icon="el-icon-user" src></el-avatar>
+
+            <div class="user-info font-14">
+                <ul>
+                    <li>
+                        <p>真实姓名：</p>
+                        <p>{{ user.name }}</p>
+                    </li>
+                    <li>
+                        <p>性别：</p>
+                        <p>{{ user.sex }}</p>
+                    </li>
+                    <li>
+                        <p>生日：</p>
+                        <p>{{ user.birthday }}</p>
+                    </li>
+                    <li>
+                        <p>个人网站：</p>
+                        <p>{{ user.web }}</p>
+                    </li>
+                    <li>
+                        <p>联系电话：</p>
+                        <p>{{ user.phone }}</p>
+                    </li>
+                    <li>
+                        <p>个人邮箱：</p>
+                        <p>{{ user.email }}</p>
+                    </li>
+                </ul>
+            </div>
         </el-card>
+
+        <edit-info :show.sync="isEdit" />
+        <edit-avatar :show.sync="isChangeAvatar" />
     </div>
 </template>
 <script>
+
 export default {
+    components: {
+        'edit-info': () => import('./edit'),
+        'edit-avatar': () => import('./avatar')
+    },
     data() {
         return {
-            user: [
-                {
-                    text: '真实姓名',
-                    key: 'name',
-                    value: '张三'
-                },
-                {
-                    text: '性别',
-                    key: 'sex',
-                    value: '男'
-                },
-                {
-                    text: '生日',
-                    key: 'birthday',
-                    value: '2019-09-30'
-                },
-                {
-                    text: '个人网站',
-                    key: 'web',
-                    value: 'xxxxxxx@xx.xxx'
-                },
-                {
-                    text: '联系电话',
-                    phone: 'name',
-                    value: '13xxxxxxxx'
-                },
-                {
-                    text: '个人邮箱',
-                    key: 'email',
-                    value: 'xxxxxxx@xx.xxx'
-                }
-            ],
+            isEdit: false,
+            isChangeAvatar: false,
+            user: {
+                name: '张三',
+                sex: '男',
+                birthday: '2019-09-30',
+                web: 'xxxxxxx@xx.xxx',
+                phone: '13xxxxxxxx',
+                email: 'xxxxxxx@xx.xxx'
+            }
         };
     }
 };
 </script>
 <style lang="scss">
+.self-card {
+    width: 450px;
+}
+.self-avatar {
+    display: inline-block;
+}
 .user-info-item {
     margin: 10px 20px;
     color: #000;
-}    
+}
+.self-edit {
+    float: right;
+}
+.user-info {
+    width: 100%;
+    display: inline-block;
+    > ul {
+        display: flex;
+        flex-wrap: wrap;
+        li {
+            flex: 0 0 50%;
+            display: inline-block;
+            margin: 10px 0;
+            > p:first-child {
+                color: #999;
+            }
+            > p:last-child {
+                // color: ;
+            }
+        }
+    }
+}
 </style>

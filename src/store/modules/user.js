@@ -14,6 +14,10 @@ export default {
         SET_USER_INFO(state, info) {
             state.user = info;
         },
+        SET_AVATAR(state, img) {
+            state.user.avatar = img
+        }
+
     },
     actions: {
         async login({ dispatch, commit }, data) {
@@ -27,6 +31,13 @@ export default {
             let data = Session.getToken();
             commit('SET_USER_INFO', data);
             return data;
-        }
+        },
+        async changeAvatar({ commit }, img) {
+            commit('SET_AVATAR', img)
+            return Promise.resolve();
+        },
     },
+    getters: {
+        avatar: state => state.user.avatar
+    }
 }

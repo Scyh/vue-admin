@@ -5,7 +5,8 @@ export default {
         ...mapGetters({
             sidebarClosing: 'app/sidebarClosing',
             rightSideOpening: 'app/rightSideOpening',
-            headerFixed: 'app/headerFixed'
+            headerFixed: 'app/headerFixed',
+            userAvatar: 'user/avatar'
         })
     },
     methods: {

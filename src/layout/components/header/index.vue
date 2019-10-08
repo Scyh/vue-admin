@@ -19,7 +19,7 @@
                     </span>
                     <div class="user-meta user-name">{{user.user_name}}</div>
                     <div class="user-meta user-profile w-32">
-                        <img class="circle" src="@/assets/avatar.png">
+                        <img class="circle" :src='userAvatar || img'>
                     </div>
                 </div>
                 <div class="setting" @click="toggleRightSide">
@@ -34,6 +34,11 @@ import appMixin from '@/layout/mixin/app'
 import { mapGetters } from 'vuex'
 export default {
     mixins: [appMixin],
+    data() {
+        return {
+            img: require('@/assets/avatar.png')
+        }
+    },
     computed: {
         ...mapGetters(['user'])
     },

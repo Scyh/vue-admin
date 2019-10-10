@@ -6,3 +6,10 @@ export const test = async function() {
         url: 'test'
     })
 }
+
+export const getTable = async function() {
+    return request({
+        type: 'get',
+        url: 'table'
+    })
+}

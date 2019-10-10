@@ -19,6 +19,7 @@ export default new Vuex.Store({
     getters: {
         routes: state => state.permission.user_routes,
         user: state => state.user.user,
-        isLocked: state => state.app.lock.isLocked
+        avatar: (state, getters) => getters['user/avatar'],
+        isLocked: state => state.app.lock.isLocked,
     }
 })

@@ -104,6 +104,20 @@ const basicRouter = [
             ]
         },
         {
+            path: '/table',
+            grade: 0,
+            component: layout,
+            children: [
+                {
+                    path: '',
+                    name: 'table',
+                    meta: { title: '表格', icon: 'table' },
+                    grade: 0,
+                    component: () => import('@/views/table'),
+                }
+            ]
+        },
+        {
             path: '/menu',
             name: 'menu',
             grade: 1,
@@ -181,6 +195,8 @@ router.beforeEach( async (to, from, next) => {
                     const routes = await Store.dispatch('permission/getUserRoutes', user);
                     router.addRoutes(routes);
                     
+                    
+
                     if (!!Session.getLock()) next('/lock');
                     else next({...to, replace: true });
                 } catch(err) {

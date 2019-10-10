@@ -1,4 +1,5 @@
 import Session from '@/utils/session'
+import img from '@/assets/avatar.png'
 
 export default {
     namespaced: true,
@@ -15,9 +16,9 @@ export default {
             state.user = info;
         },
         SET_AVATAR(state, img) {
-            state.user.avatar = img
+            let obj = Object.assign({}, state.user, { avatar: img })
+            state.user = obj;
         }
-
     },
     actions: {
         async login({ dispatch, commit }, data) {
@@ -38,6 +39,8 @@ export default {
         },
     },
     getters: {
-        avatar: state => state.user.avatar
+        avatar: state => {
+            return state.user.avatar || img
+        }
     }
 }

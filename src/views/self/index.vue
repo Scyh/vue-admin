@@ -5,7 +5,7 @@
                 <icon-svg name="edit1" />
             </span>
 
-            <el-avatar @click.native="isChangeAvatar = true" class="self-avatar" shape="square" :size="128" icon="el-icon-user" src></el-avatar>
+            <el-avatar @click.native="isChangeAvatar = true" class="self-avatar" shape="square" :size="128" icon="el-icon-user" :src="avatar"></el-avatar>
 
             <div class="user-info font-14">
                 <ul>
@@ -42,11 +42,14 @@
     </div>
 </template>
 <script>
-
+import { mapGetters } from 'vuex'
 export default {
     components: {
         'edit-info': () => import('./edit'),
         'edit-avatar': () => import('./avatar')
+    },
+    computed: {
+        ...mapGetters(['avatar'])
     },
     data() {
         return {

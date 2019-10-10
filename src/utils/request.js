@@ -18,7 +18,8 @@ server.interceptors.response.use(response => {
     return Promise.reject(res.errmsg);
 }, error => {
     Message.error(error.message);
-    return Promise.reject(error)
+    console.log('error: ', error)
+    // return Promise.reject(error)
 })
 
 export default server;

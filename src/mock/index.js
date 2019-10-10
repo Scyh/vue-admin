@@ -1,7 +1,9 @@
 const user = require('./user');
+const other = require('./other');
 
 const apis = [
-    ...user
+    ...user,
+    ...other
 ]
 
 const dataWrap = apis => apis.map(i => ({

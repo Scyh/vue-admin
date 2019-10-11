@@ -6,6 +6,7 @@
 
         <el-menu-item v-else-if="!route.children" :index="resolvePath(route.path)">
             {{ route.meta.title }}
+            <!-- <alink :icon="route.meta.icon || 'menu'" :title="route.meta.title" /> -->
         </el-menu-item>
         
         <el-submenu v-else :index="route.path">

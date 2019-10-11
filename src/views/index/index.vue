@@ -133,9 +133,7 @@ export default {
         copyright: () => import('@/components/copyRight')
     },
     created() {
-        test().then(rst => {
-            console.log(rst)
-        })
+        test()
     },
     data() {
         return {

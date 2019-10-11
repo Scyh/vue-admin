@@ -9,10 +9,7 @@ const apis = [
 const dataWrap = apis => apis.map(i => ({
         url: i.url,
         type: i.type,
-        callback: (req, res) => res.json({
-            status: 0,
-            data: i.data
-        })
+        callback: i.callback
     }))
 
 module.exports = dataWrap(apis)

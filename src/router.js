@@ -105,15 +105,24 @@ const basicRouter = [
         },
         {
             path: '/table',
-            grade: 0,
+            grade: 1,
             component: layout,
+            meta: { title: '表格' },
+            redirect: '/table/index',
             children: [
                 {
-                    path: '',
+                    path: 'index',
                     name: 'table',
-                    meta: { title: '表格', icon: 'table' },
-                    grade: 0,
+                    meta: { title: '分页表格', icon: 'table' },
+                    grade: 1,
                     component: () => import('@/views/table'),
+                },
+                {
+                    path: 'download',
+                    name: 'tableDownload',
+                    meta: { title: '表格下载', icon: 'download' },
+                    grade: 1,
+                    component: () => import('@/views/table/download'),
                 }
             ]
         },

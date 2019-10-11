@@ -15,11 +15,25 @@ server.interceptors.response.use(response => {
     } else {
         return res
     }
-    return Promise.reject(res.errmsg);
+    return Promise.reject(res);
 }, error => {
     Message.error(error.message);
     console.log('error: ', error)
-    // return Promise.reject(error)
-})
+    return Promise.reject(error)
+});
+
+
+export const get = (url, data) => {
+    return new Promise((resolve, reject) => {
+        return server.get(url, {
+            params: data
+        }).then(res => {
+            resolve(res.data)
+        }).catch(err => {
+            resolve();
+        })
+    })
+}
+
 
 export default server;

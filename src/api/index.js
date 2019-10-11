@@ -1,15 +1,5 @@
-import request from '@/utils/request'
+import { get } from '@/utils/request'
 
-export const test = async function() {
-    return request({
-        type: 'get',
-        url: 'test'
-    })
-}
+export const test = data => get('/test')
 
-export const getTable = async function() {
-    return request({
-        type: 'get',
-        url: 'table'
-    })
-}
+export const getTable = data => get('/table', data);

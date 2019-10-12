@@ -5,7 +5,8 @@ let table = new Array(Random.integer(100, 300)).fill(0).map(() => ({
         id: Random.guid(),
         name: Random.cname(),
         address: Random.county(true),
-        phone: Mock.mock(/1\d{2}\-XXXX\-\d{4}/)
+        phone: Mock.mock(/1\d{2}\-XXXX\-\d{4}/),
+        number: Random.natural(1, 2000)
     }));
 
 module.exports = [
@@ -19,7 +20,6 @@ module.exports = [
             if (searchKey) {
                 let reg = new RegExp(searchKey, 'img');
                 result = table.filter(i => reg.test(i.name) || reg.test(i.address) || reg.test(i.phone));
-                console.log(result)
             }
 
             res.json({

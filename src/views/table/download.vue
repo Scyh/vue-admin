@@ -2,6 +2,7 @@
     <div id="table_download_page">
         <el-table
             :data="table"
+            v-loading="tableLoading"
             border
             style="width: 100%"
             height="85vh"
@@ -45,15 +46,24 @@ export default {
         return {
             table: [],
             selection: [],
+            tableLoading: false,
             downloadCSVLoading: false,
             downloadXLSXLoading: false,
         }
     },
-    async created() {
-        const { data } = await getTable({pageSize: 500});
-        this.table = data
+    created() {
+        this.getTable();
     },
     methods: {
+        async getTable() {
+            this.tableLoading = true;
+            setTimeout( async() => {
+                let { data } = await getTable({pageSize: 1000});
+                this.table = Object.freeze(data)
+                this.tableLoading = false;
+            })
+        },
+
         selectionChangeHandle(val) {
             this.selection = val;
         },
@@ -92,7 +102,7 @@ export default {
             let tableCopyJson = JSON.parse(JSON.stringify(this.table)),
                 wsName = 'sheet1',
                 wsConfig = {}
-
+    
             if (options) {
 
                 if (options.cHeader) {

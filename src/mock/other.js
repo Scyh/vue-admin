@@ -1,13 +1,14 @@
 const Mock = require('mockjs');
 const Random = Mock.Random;
 
-let table = new Array(Random.integer(100, 300)).fill(0).map(() => ({
+let table = new Array(Random.integer(1000, 1000)).fill(0).map(() => ({
         id: Random.guid(),
         name: Random.cname(),
         address: Random.county(true),
         phone: Mock.mock(/1\d{2}\-XXXX\-\d{4}/),
         number: Random.natural(1, 2000)
-    }));
+    }))
+
 
 module.exports = [
     {

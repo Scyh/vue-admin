@@ -123,7 +123,14 @@ const basicRouter = [
                     meta: { title: '表格下载', icon: 'download' },
                     grade: 1,
                     component: () => import('@/views/table/download'),
-                }
+                },
+                {
+                    path: 'import',
+                    name: 'tableImport',
+                    meta: { title: '导入下载', icon: 'download' },
+                    grade: 1,
+                    component: () => import('@/views/table/import'),
+                },
             ]
         },
         {

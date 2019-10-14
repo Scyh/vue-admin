@@ -15,17 +15,20 @@
                 <template slot="header" slot-scope="scope">
                     <el-dropdown>
                         <el-button size="mini" @click="downloadAsCsv" v-loading="downloadCSVLoading" icon="el-icon-download">csv下载</el-button>
+                        <el-dropdown-menu slot="dropdown"></el-dropdown-menu>
                     </el-dropdown>
 
                     <el-dropdown @command="downloadAsXslx">
-                        <el-button size="mini" icon="el-icon-download">xslx下载</el-button>
+                        <el-button @click="downloadAsXslx" size="mini" icon="el-icon-download">xslx下载</el-button>
                         <el-dropdown-menu slot="dropdown">
-                            <!-- <el-dropdown-item @click.native="downloadAsXslx">默认</el-dropdown-item> -->
                             <!-- <el-dropdown-item @click="downloadAsXslx({ cHeader: true })">含有中文表头</el-dropdown-item> -->
                             <el-dropdown-item :command="{ cHeader: true }">含有中文表头</el-dropdown-item>
                             <!-- <el-dropdown-item @click="downloadAsXslx({ header: false })">没有表头</el-dropdown-item> -->
+                            <el-dropdown-item :command="{ header: false }">没有表头</el-dropdown-item>
                             <!-- <el-dropdown-item @click="downloadAsXslx({ numberFormat: true })">数字列格式化（精确两位小数点）</el-dropdown-item> -->
+                            <el-dropdown-item :command="{ numberFormat: true }">数字列格式化（精确两位小数点）</el-dropdown-item>
                             <!-- <el-dropdown-item @click="downloadAsXslx({ setColWidth: true })">设置列宽</el-dropdown-item> -->
+                            <el-dropdown-item :command="{ setColWidth: true }">设置列宽</el-dropdown-item>
                         </el-dropdown-menu>
                     </el-dropdown>
                     
@@ -52,7 +55,6 @@ export default {
     },
     methods: {
         selectionChangeHandle(val) {
-            console.log('select val:', this.selection);
             this.selection = val;
         },
         downloadAsCsv() {
@@ -135,12 +137,38 @@ export default {
                 }
             }
 
+
+            ws['A1'].s = {
+                fill: {
+                    bgColor:'#ff0000'
+                },
+                font: {
+                    sz: 50
+                }
+            }
+
+        
             // 向 book 中添加 sheet
             XLSX.utils.book_append_sheet(wb, ws, wsName);
 
             // 写文件
             XLSX.write(wb, {bookType: 'xlsx', bookSST:true, type: 'base64'}) 
             XLSX.writeFile(wb, 'table_download.xlsx')
+        },
+        downloadHandle(type) {
+            if (this.selection.length > 0) {
+                this.$confirm('是否下载选中数据？', '提示', {
+                    confirmButtonText: '是',
+                    cancelButtonText: '否',
+                    type: 'warning'
+                }).then(() => {
+                   
+                }).catch(() => {
+                });
+            } else {
+
+            }
+
         }
     }
 }

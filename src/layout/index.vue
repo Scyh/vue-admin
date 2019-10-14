@@ -1,5 +1,5 @@
 <template>
-    <div id="layout" :class='{"mask": mask, "close-left-side": sidebarClosing, "show-right-side": rightSideOpening, "fixed-header": headerFixed}' @click.stop.prevent="closeMask($event)">
+    <div id="layout" ref="layout" :class='{"mask": mask, "close-left-side": sidebarClosing, "show-right-side": rightSideOpening, "fixed-header": headerFixed}' @click.prevent.stop="closeMask($event)">
         <lo-header />
         <lo-aside />
         <lo-main />
@@ -17,6 +17,11 @@ import { mapGetters, mapMutations } from 'vuex'
 import appMixin from '@/layout/mixin/app'
 
 export default {
+    // mounted() {
+    //  this.$refs.layout.addEventListener('click', event => {
+    //        this.$store.commit('app/closeMask', event)
+    //  })
+    // },
     components: {
         loMain,
         loAside,

@@ -35,6 +35,7 @@ export default  {
                     state.mask = false;
                 }
             }
+            return
         },
         lock(state, { password, route }) {
             state.lock.isLocked = true,

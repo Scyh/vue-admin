@@ -1,5 +1,6 @@
 import Session from '@/utils/session'
 import { hex_sha1 } from '@/utils/sha1'
+import { stat } from 'fs'
 
 export default  {
     namespaced: true,
@@ -15,7 +16,8 @@ export default  {
             password: '',
             route: '',
             isLocked: false
-        }
+        },
+        errorLog: [],
     },
     mutations: {
         toggleHeaderFixed(state) {
@@ -54,6 +56,9 @@ export default  {
                 Session.unlock();
             }
             return false
+        },
+        appendErrorLog(state, error) {
+            state.errorLog.push(error);
         }
     },
     actions: {
@@ -74,6 +79,7 @@ export default  {
         sidebarClosing: state => state.sidebar.close,
         rightSideOpening: state => state.rightSide,
         mask: state => state.mask,
-        headerFixed: state => state.headerFixed
+        headerFixed: state => state.headerFixed,
+        errorLog: state => state.errorLog
     }
 }

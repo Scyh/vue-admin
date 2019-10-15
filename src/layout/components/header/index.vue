@@ -8,6 +8,7 @@
             </div>
             <div class="lo-header-right-user">
                 <div class="user">
+                    <errorLog />
                     <el-badge is-dot class="user-meta user-email">
                         <icon-svg name="email" />
                     </el-badge>
@@ -35,6 +36,9 @@ import { mapGetters } from 'vuex'
 import img from '@/assets/avatar.png'
 export default {
     mixins: [appMixin],
+    components: {
+        errorLog: () => import("@/components/errorLog")
+    },
     computed: {
         ...mapGetters({
             user: 'user',

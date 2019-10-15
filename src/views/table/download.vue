@@ -42,6 +42,7 @@
 import XLSX from 'xlsx'
 import { getTable } from '@/api'
 export default {
+    name: 'table-download',
     data() {
         return {
             table: [],
@@ -58,7 +59,7 @@ export default {
         async getTable() {
             this.tableLoading = true;
             setTimeout( async() => {
-                let { data } = await getTable({pageSize: 1000});
+                let { data } = await getTable({pageSize: 500});
                 this.table = Object.freeze(data)
                 this.tableLoading = false;
             })

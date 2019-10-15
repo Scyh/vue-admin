@@ -16,6 +16,7 @@ Vue.component('v-chart', () => import('@/components/echart'))
 Vue.use(ElementUI)
 
 Vue.config.productionTip = false
+import './errorlog'
 
 new Vue({
   router,

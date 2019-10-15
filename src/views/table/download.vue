@@ -46,7 +46,7 @@ export default {
         return {
             table: [],
             selection: [],
-            tableLoading: false,
+            tableLoading: true,
             downloadCSVLoading: false,
             downloadXLSXLoading: false,
         }
@@ -147,17 +147,15 @@ export default {
                 }
             }
 
+            // ws['A1'].s = {
+            //     fill: {
+            //         bgColor:'#ff0000'
+            //     },
+            //     font: {
+            //         sz: 50
+            //     }
+            // }
 
-            ws['A1'].s = {
-                fill: {
-                    bgColor:'#ff0000'
-                },
-                font: {
-                    sz: 50
-                }
-            }
-
-        
             // 向 book 中添加 sheet
             XLSX.utils.book_append_sheet(wb, ws, wsName);
 

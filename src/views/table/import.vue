@@ -3,18 +3,20 @@
         <upload class="upload"
             @upload="uploadHandle"
             :accept='"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"'/>
-        
-        <template v-if="table.length > 0">
-            <el-table
-                v-for="i in table"
-                :key="i.name"
-                :data="i.data"
-                :show-header="false"
-                border
-                style="width: 100%">
-                <el-table-column v-for="col in i.cols" :key="col" :prop="col"></el-table-column>
-            </el-table>    
-        </template>
+            <template v-if="table.length > 0">
+                <div class="table-wrap">
+                    <section v-for="i in table" :key="i.name">
+                        <p class="sheet-name font-20 mg-t-15">{{i.name}}</p>
+                        <el-table
+                            :data="i.data"
+                            :show-header="false"
+                            border
+                            style="width: 100%">
+                            <el-table-column v-for="col in i.cols" :key="col" :prop="col"></el-table-column>
+                        </el-table>    
+                    </section>
+                </div>
+            </template>
     </div>
 </template>
 
@@ -37,12 +39,12 @@ export default {
             let reader = new FileReader();
             reader.readAsBinaryString(files[0]);
             reader.onload = () =>{
+                this.table = [];
                 let wb = XLSX.read(reader.result, { type: 'binary' });
                 this.ws2table(wb)
             };
         },
         ws2table(workbook) {
-            console.log(workbook)
             if(!workbook) return;
             let { SheetNames, Sheets } = workbook;
             if (SheetNames.length <= 0) return this.$message.wraning('上传表格中没有数据');
@@ -60,8 +62,18 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .upload {
     width: 100%;
+}
+.table-wrap {
+    height: 60vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    /deep/ .el-table {
+        // max-height: 300px;
+        // overflow: scroll;
+        margin-bottom: 30px;
+    }
 }
 </style>

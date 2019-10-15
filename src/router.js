@@ -107,7 +107,7 @@ const basicRouter = [
             path: '/table',
             grade: 1,
             component: layout,
-            meta: { title: '表格' },
+            meta: { title: '表格', icon: 'table' },
             redirect: '/table/index',
             children: [
                 {

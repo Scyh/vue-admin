@@ -32,19 +32,35 @@ export default {
 
         // 类型验证
         checkFileType(files) {
-            console.log('files[0].type:', files[0].type)
+            const reg = /(.+)\/(.+)/im,
+                file = files[0],
+                fileTypesArr = file.type.split('/');
+            
+            let fileType = fileTypesArr[0],
+                fileSubtype = fileTypesArr[1];
+
             // 需要重写类型验证
-            // if (this.accept === '*') return true;
-            // else if (this.accept.includes(file.type)) return true;
-            // else return false
-            return true
+            if (this.accept === '*') return true;
+            else {
+                let acceptArr = this.accept.split(',');
+                return acceptArr.some(i => {
+                    let matches = i.match(reg);
+                    console.log(matches)
+                    if (!matches) return false;
+                    else {
+                        let type = matches[1],
+                            subtype = matches[2];
+                        return type === fileType && (subtype === '*' || subtype === fileSubtype)
+                    }
+                })
+            }
         },
 
         _dropHandle(event) {
             
             let files = event.dataTransfer.files;
             if (!files) return;
-            if (!this.checkFileType(files)) return;
+            if (!this.checkFileType(files)) return this.$message.error('上传文件类型错误！');
             this.$emit('upload', files)
         },
         triggerUpload() {
@@ -53,9 +69,9 @@ export default {
         changeHandle(event) {
             let files = event.target.files;
             if (!files) return;
-            if (!this.checkFileType(files)) return
+            if (!this.checkFileType(files)) return this.$message.error('上传文件类型错误！');
             this.$emit('upload', files)
-            // event.target.value = null;
+            event.target.value = null;
         }
     }
 }

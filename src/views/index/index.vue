@@ -27,10 +27,10 @@
                     <v-chart :options="option" :autoresize="true" />
                 </el-card>
 
+                <!-- 表格 -->
                 <el-card class="box-card">
                     <p class="card-title">这里是标题</p>
                     <p class="card-subtitle mg-b-15">这是副标题</p>
-                    <!-- 表格 -->
                     <el-table :data="tableData" style="width: 100%" class="table-1" :show-header="false">
                         <el-table-column label="日期" >
                             <template slot-scope="scope">
@@ -132,8 +132,8 @@ export default {
         mediaCard,
         copyright: () => import('@/components/copyRight')
     },
-    created() {
-        test()
+    mounted() {
+        this.$nextTick(test);
     },
     data() {
         return {
